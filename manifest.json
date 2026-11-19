@@ -1,7 +1,9 @@
-{
-  "name": "The Leader - الفلاتر الذكية",
+
+  {{
+  "name": "The Leader",
   "short_name": "The Leader",
-  "start_url": "./index.html",
+  "description": "The Leader Smart Filters App",
+  "start_url": "/The-Leader/",
   "display": "standalone",
   "background_color": "#0d1117",
   "theme_color": "#0d1117",
