@@ -1,150 +1,173 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>GLOBAL AI BUSINESS - The Leader</title>
-  <style>
-    :root {
-      --bg-color: #090d16;
-      --card-bg: #111827;
-      --text-color: #f8fafc;
-      --sub-text: #94a3b8;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.25);
-      --btn-bg: #1f2937;
-      --border: #374151;
-      --success: #10b981;
-    }
-    body.light-mode {
-      --bg-color: #f1f5f9;
-      --card-bg: #ffffff;
-      --text-color: #0f172a;
-      --sub-text: #475569;
-      --accent: #0284c7;
-      --accent-glow: rgba(2, 132, 199, 0.15);
-      --btn-bg: #e2e8f0;
-      --border: #cbd5e1;
-      --success: #059669;
-    }
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-    }
-    input, select { user-select: text; }
-    body { margin: 0; background: var(--bg-color); color: var(--text-color); min-height: 100vh; transition: 0.3s; padding-bottom: 35px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>The Leader AI - GLOBAL AI BUSINESS</title>
+<style>
+  :root {
+    --bg-color: #0b1120;
+    --card-bg: #1e293b;
+    --text-color: #f8fafc;
+    --sub-text: #94a3b8;
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.3);
+    --btn-bg: #1f2937;
+    --nav-bg: #0f172a;
+  }
+  body.light-mode {
+    --bg-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-color: #0f172a;
+    --sub-text: #475569;
+    --accent: #0284c7;
+    --accent-glow: rgba(2, 132, 199, 0.2);
+    --btn-bg: #e2e8f0;
+    --nav-bg: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; }
+  body { background: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 85px; transition: background 0.3s, color 0.3s; }
+  
+  header { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; background: var(--nav-bg); border-bottom: 1px solid rgba(148,163,184,0.15); position: sticky; top: 0; z-index: 10; }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-badge { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #38bdf8); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff; font-size: 17px; }
+  .brand h1 { font-size: 16px; font-weight: 700; }
+  .brand p { font-size: 11px; color: var(--accent); letter-spacing: 0.5px; }
+  .top-btn { background: var(--btn-bg); color: var(--text-color); border: 1px solid rgba(148,163,184,0.2); padding: 8px 14px; border-radius: 10px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; }
 
-    /* الشريط العلوي الاحترافي */
-    .app-bar { background: var(--card-bg); padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
-    .brand { display: flex; flex-direction: column; }
-    .app-title { font-size: 1.15rem; font-weight: 800; color: var(--accent); display: flex; align-items: center; gap: 6px; }
-    .security-badge { font-size: 0.68rem; color: var(--success); font-weight: 700; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
-    .settings-btn { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 9px 14px; border-radius: 12px; font-size: 0.9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+  .screen { display: none; padding: 18px; flex: 1; max-width: 500px; width: 100%; margin: 0 auto; }
+  .screen.active { display: block; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-    .container { padding: 16px; max-width: 500px; margin: 0 auto; }
-    .card { background: var(--card-bg); padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); border: 1px solid var(--border); }
+  .hero-card { background: var(--card-bg); border-radius: 20px; padding: 26px 18px; text-align: center; border: 1px solid rgba(56,189,248,0.2); box-shadow: 0 8px 20px rgba(0,0,0,0.2); margin-top: 8px; }
+  .upload-btn { background: linear-gradient(135deg, #0284c7, #38bdf8); color: #fff; border: none; padding: 15px 24px; border-radius: 14px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; box-shadow: 0 4px 15px var(--accent-glow); margin-top: 16px; }
+  .preview-box { margin-top: 18px; display: none; }
+  .preview-box img { width: 100%; max-height: 270px; object-fit: contain; border-radius: 14px; border: 2px solid var(--accent); background: #000; }
+  .action-row { display: flex; gap: 10px; margin-top: 14px; }
+  .action-row button { flex: 1; padding: 12px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; }
+  .btn-process { background: #10b981; color: #fff; }
+  .btn-process:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-download { background: var(--accent); color: #0f172a; display: none; }
 
-    /* زر الرفع */
-    .upload-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff; padding: 18px; border-radius: 16px; font-size: 1.05rem; font-weight: 800; cursor: pointer; width: 100%; box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35); transition: 0.2s; }
-    .upload-btn:active { transform: scale(0.98); }
-    .upload-sub { font-size: 0.75rem; font-weight: 400; opacity: 0.9; }
-    input[type="file"] { display: none; }
+  .settings-group { background: var(--card-bg); border-radius: 16px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(148,163,184,0.15); }
+  .settings-group h3 { font-size: 14px; color: var(--accent); margin-bottom: 14px; }
+  .setting-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(148,163,184,0.1); }
+  .setting-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .setting-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(148,163,184,0.3); background: var(--bg-color); color: var(--text-color); margin-top: 8px; font-size: 14px; }
+  select { padding: 8px 12px; border-radius: 8px; background: var(--bg-color); color: var(--text-color); border: 1px solid rgba(148,163,184,0.3); font-size: 14px; }
+  .save-settings-btn { background: var(--accent); color: #0f172a; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: bold; font-size: 15px; cursor: pointer; }
 
-    /* منطقة الصورة */
-    .canvas-wrapper { position: relative; margin-top: 16px; display: none; text-align: center; background: #000; border-radius: 14px; padding: 4px; border: 1px solid var(--border); }
-    canvas { max-width: 100%; max-height: 52vh; border-radius: 10px; display: block; margin: 0 auto; }
+  nav.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--nav-bg); border-top: 1px solid rgba(148,163,184,0.15); display: flex; justify-content: space-around; padding: 10px 0; z-index: 20; }
+  .nav-item { background: none; border: none; color: var(--sub-text); display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; cursor: pointer; flex: 1; }
+  .nav-item.active { color: var(--accent); font-weight: bold; }
+  .nav-icon { font-size: 20px; }
 
-    /* شريط الأدوات السريعة */
-    .quick-tools { display: none; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
-    .tool-btn { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 9px 2px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
-    .tool-btn.active-tool { border-color: var(--accent); color: var(--accent); }
-
-    /* أداة إضافة نص */
-    .text-tool-box { display: none; background: var(--bg-color); padding: 12px; border-radius: 12px; margin-top: 12px; border: 1px solid var(--border); }
-    .text-input-row { display: flex; gap: 8px; }
-    .text-input-row input[type="text"] { flex: 1; background: var(--card-bg); color: var(--text-color); border: 1px solid var(--border); padding: 9px 12px; border-radius: 10px; font-size: 0.85rem; outline: none; }
-    .text-input-row input[type="color"] { width: 42px; height: 38px; border: none; border-radius: 8px; background: none; cursor: pointer; }
-
-    /* الفلاتر */
-    .section-label { font-size: 0.82rem; font-weight: 700; color: var(--sub-text); margin: 16px 0 8px; display: none; text-align: right; }
-    .filters { display: none; grid-template-columns: repeat(4, 1fr); gap: 7px; }
-    .filter-btn { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 10px 4px; border-radius: 10px; font-size: 0.76rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
-    .filter-btn.active { background: var(--accent); color: #090d16; border-color: var(--accent); font-weight: 800; }
-
-    /* أشرطة الضبط اليدوي */
-    .sliders-box { display: none; background: var(--bg-color); padding: 12px 14px; border-radius: 14px; margin-top: 10px; border: 1px solid var(--border); }
-    .slider-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 0.8rem; font-weight: 600; }
-    .slider-row:last-child { margin-bottom: 0; }
-    .slider-row input[type="range"] { width: 65%; accent-color: var(--accent); }
-
-    /* زر الحفظ */
-    .download-btn { background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; padding: 15px; border-radius: 14px; font-size: 1rem; font-weight: 800; width: 100%; margin-top: 16px; cursor: pointer; display: none; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); }
-
-    /* تذييل الحقوق */
-    .footer-note { text-align: center; font-size: 0.72rem; color: var(--sub-text); margin-top: 18px; }
-
-    /* شاشة الإعدادات الكاملة */
-    .settings-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 300; overflow-y: auto; }
-    .settings-header { background: var(--card-bg); padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
-    .back-btn { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 8px 14px; border-radius: 10px; font-weight: 700; cursor: pointer; }
-    .settings-list { padding: 16px; max-width: 500px; margin: 0 auto; }
-    .setting-group { background: var(--card-bg); border-radius: 16px; margin-bottom: 16px; overflow: hidden; border: 1px solid var(--border); }
-    .group-title { padding: 10px 16px; font-size: 0.78rem; font-weight: 800; color: var(--accent); background: var(--accent-glow); }
-    .setting-item { padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); cursor: pointer; }
-    .setting-item:last-child { border-bottom: none; }
-    .item-info { display: flex; flex-direction: column; max-width: 72%; }
-    .item-title { font-size: 0.92rem; font-weight: 700; }
-    .item-desc { font-size: 0.75rem; color: var(--sub-text); margin-top: 3px; line-height: 1.4; }
-    select.setting-select { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 7px 10px; border-radius: 8px; font-weight: 700; font-size: 0.82rem; }
-
-    /* النوافذ المنبثقة */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 400; justify-content: center; align-items: center; padding: 18px; }
-    .modal-content { background: var(--card-bg); color: var(--text-color); padding: 22px; border-radius: 20px; width: 100%; max-width: 420px; text-align: center; border: 1px solid var(--border); max-height: 88vh; overflow-y: auto; }
-    .modal-btn { width: 100%; padding: 13px; margin-top: 12px; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 800; cursor: pointer; background: #ef4444; color: #fff; }
-    #savedImagePreview { max-width: 100%; max-height: 52vh; border-radius: 12px; margin: 12px 0; border: 2px solid var(--accent); }
-    .policy-text { text-align: right; font-size: 0.82rem; color: var(--sub-text); line-height: 1.6; background: var(--bg-color); padding: 14px; border-radius: 12px; border: 1px solid var(--border); }
-  </style>
+  #toast { position: fixed; top: 75px; left: 50%; transform: translateX(-50%); background: #10b981; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: bold; display: none; z-index: 50; box-shadow: 0 4px 12px rgba(0,0,0,0.3); white-space: nowrap; }
+</style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
-  <!-- الشريط العلوي -->
-  <div class="app-bar">
-    <div class="brand">
-      <span class="app-title">✨ The Leader AI</span>
-      <span class="security-badge">🔒 محمي ومُؤمّن • GLOBAL AI BUSINESS</span>
+<header>
+  <div class="brand">
+    <div class="brand-badge">AI</div>
+    <div>
+      <h1>The Leader AI</h1>
+      <p>GLOBAL AI BUSINESS</p>
     </div>
-    <button class="settings-btn" onclick="openSettings()">⚙️ الضبط</button>
+  </div>
+  <button type="button" class="top-btn" onclick="switchScreen('settings')">⚙️ <span data-ar="الضبط" data-en="Settings">الضبط</span></button>
+</header>
+
+<div id="toast">تم الحفظ بنجاح!</div>
+
+<!-- الشاشة الرئيسية -->
+<main id="screen-home" class="screen active">
+  <div class="hero-card">
+    <div style="font-size: 46px; margin-bottom: 10px;">🖼️</div>
+    <h2 style="font-size: 19px; margin-bottom: 8px;" data-ar="معالجة الصور بالذكاء الاصطناعي" data-en="AI Image Studio">معالجة الصور بالذكاء الاصطناعي</h2>
+    <p style="font-size: 13px; color: var(--sub-text);" data-ar="اختر صورة من هاتفك للبدء في التحسين والمعالجة الفورية" data-en="Select an image from your phone to start">اختر صورة من هاتفك للبدء في التحسين والمعالجة الفورية</p>
+    
+    <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImage(event)">
+    <button type="button" class="upload-btn" onclick="triggerFileInput()" data-ar="📁 اختر صورة للبدء" data-en="📁 Select Image to Start">📁 اختر صورة للبدء</button>
+
+    <div class="preview-box" id="previewBox">
+      <img id="previewImg" src="" alt="Preview">
+      <p id="saveHint" style="display: none; font-size: 12px; color: var(--accent); margin-top: 8px;">💡 يمكنك أيضاً الضغط مطولاً على الصورة لحفظها في المعرض مباشرة</p>
+      <div class="action-row">
+        <button type="button" class="btn-process" id="processBtn" onclick="processImage()" data-ar="✨ تحسين بالذكاء الاصطناعي" data-en="✨ AI Enhance">✨ تحسين بالذكاء الاصطناعي</button>
+        <button type="button" class="btn-download" id="downloadBtn" onclick="downloadImage()" data-ar="⬇️ حفظ الصورة" data-en="⬇️ Save">⬇️ حفظ الصورة</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- شاشة السجل -->
+<main id="screen-history" class="screen">
+  <div class="hero-card">
+    <div style="font-size: 40px; margin-bottom: 10px;">📂</div>
+    <h3 data-ar="الصور المعالجة مؤخراً" data-en="Recent Processed Images">الصور المعالجة مؤخراً</h3>
+    <p id="historyCount" style="color: var(--sub-text); font-size: 13px; margin-top: 8px;">لا توجد صور معالجة في هذه الجلسة بعد.</p>
+  </div>
+</main>
+
+<!-- شاشة الضبط الحقيقية -->
+<main id="screen-settings" class="screen">
+  <div class="settings-group">
+    <h3 data-ar="المظهر واللغة" data-en="Appearance & Language">المظهر واللغة</h3>
+    <div class="setting-item">
+      <span data-ar="الوضع الليلي / النهاري" data-en="Theme Mode">الوضع الليلي / النهاري</span>
+      <select id="themeSelect" onchange="applyTheme(this.value)">
+        <option value="dark">ليلي (Dark)</option>
+        <option value="light">نهاري (Light)</option>
+      </select>
+    </div>
+    <div class="setting-item">
+      <span data-ar="لغة التطبيق" data-en="App Language">لغة التطبيق</span>
+      <select id="langSelect" onchange="applyLang(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+      </select>
+    </div>
   </div>
 
-  <!-- الشاشة الرئيسية -->
-  <div class="container">
-    <div class="card">
-      <label class="upload-btn">
-        <span>📁 اختر صورة للبدء</span>
-        <span class="upload-sub">معالجة فورية وآمنة 100% داخل جهازك</span>
-        <input type="file" id="imageInput" accept="image/*">
-      </label>
+  <div class="settings-group">
+    <h3 data-ar="إعدادات الذكاء الاصطناعي" data-en="AI Engine Settings">إعدادات الذكاء الاصطناعي</h3>
+    <div class="setting-item">
+      <span data-ar="جودة المعالجة" data-en="Processing Quality">جودة المعالجة</span>
+      <select id="qualitySelect">
+        <option value="hd">فائقة (Ultra HD)</option>
+        <option value="fast">سريعة (Fast)</option>
+      </select>
+    </div>
+    <div style="margin-top: 12px;">
+      <label style="font-size: 13px; color: var(--sub-text);" data-ar="مفتاح الربط (API Key - اختياري)" data-en="API Key (Optional)">مفتاح الربط (API Key - اختياري)</label>
+      <input type="password" id="apiKeyInput" class="setting-input" placeholder="sk-...">
+    </div>
+  </div>
 
-      <div class="canvas-wrapper" id="canvasWrapper">
-        <canvas id="canvas"></canvas>
-      </div>
+  <button type="button" class="save-settings-btn" onclick="saveSettings()" data-ar="💾 حفظ الإعدادات" data-en="💾 Save Settings">💾 حفظ الإعدادات</button>
+</main>
 
-      <!-- أدوات التحكم السريعة -->
-      <div class="quick-tools" id="quickTools">
-        <button class="tool-btn" onclick="rotateImage()">🔄 تدوير</button>
-        <button class="tool-btn" id="vignetteBtn" onclick="toggleVignette()">🖼️ إطار</button>
-        <button class="tool-btn" id="textToggleBtn" onclick="toggleTextBox()">✍️ نص</button>
-        <button class="tool-btn" onmousedown="showOriginal(true)" onmouseup="showOriginal(false)" ontouchstart="showOriginal(true)" ontouchend="showOriginal(false)">👁️ الأصل</button>
-      </div>
+<!-- شريط التنقل السفلي -->
+<nav class="bottom-nav">
+  <button type="button" class="nav-item active" id="nav-home" onclick="switchScreen('home')">
+    <span class="nav-icon">🏠</span>
+    <span data-ar="الرئيسية" data-en="Home">الرئيسية</span>
+  </button>
+  <button type="button" class="nav-item" id="nav-history" onclick="switchScreen('history')">
+    <span class="nav-icon">📂</span>
+    <span data-ar="السجل" data-en="History">السجل</span>
+  </button>
+  <button type="button" class="nav-item" id="nav-settings" onclick="switchScreen('settings')">
+    <span class="nav-icon">⚙️</span>
+    <span data-ar="الضبط" data-en="Settings">الضبط</span>
+  </button>
+</nav>
 
-      <!-- أداة إضافة نص على الصورة -->
-      <div class="text-tool-box" id="textToolBox">
-        <div class="text-input-row">
-          <input type="text" id="customTextInput" placeholder="اكتب اسمك أو نصاً على الصورة..." oninput="renderCanvas()">
-          <input type="color" id="customTextColor" value="#ffffff" onchange="renderCanvas()">
-        </div>
-      </div>
-
-      <!-- الفلاتر -->
+<script>
+  (function clearOldCache() {
+    try {
+      if ('serviceWorker' in navigator) {
