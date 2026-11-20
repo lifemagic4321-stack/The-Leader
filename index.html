@@ -2,127 +2,149 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Leader - استوديو الفلاتر</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GLOBAL AI BUSINESS - The Leader</title>
   <style>
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
-    body { margin: 0; background: #0f172a; color: #f8fafc; display: flex; flex-direction: column; align-items: center; min-height: 100vh; transition: 0.3s; }
-    body.light-mode { background: #f1f5f9; color: #0f172a; }
-    
-    .app-bar { width: 100%; background: #1e293b; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 100; }
-    body.light-mode .app-bar { background: #ffffff; color: #0f172a; }
-    .app-title { font-size: 1.15rem; font-weight: bold; color: #38bdf8; }
-    .settings-btn { background: #334155; color: #fff; border: none; padding: 8px 12px; border-radius: 10px; font-size: 1rem; cursor: pointer; }
+    :root {
+      --bg-color: #090d16;
+      --card-bg: #111827;
+      --text-color: #f8fafc;
+      --sub-text: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --btn-bg: #1f2937;
+      --border: #374151;
+      --success: #10b981;
+    }
+    body.light-mode {
+      --bg-color: #f1f5f9;
+      --card-bg: #ffffff;
+      --text-color: #0f172a;
+      --sub-text: #475569;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.15);
+      --btn-bg: #e2e8f0;
+      --border: #cbd5e1;
+      --success: #059669;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    input, select { user-select: text; }
+    body { margin: 0; background: var(--bg-color); color: var(--text-color); min-height: 100vh; transition: 0.3s; padding-bottom: 35px; }
 
-    .container { padding: 20px; width: 100%; max-width: 480px; }
-    .card { background: #1e293b; padding: 20px; border-radius: 16px; width: 100%; box-shadow: 0 10px 25px rgba(0,0,0,0.4); text-align: center; }
-    body.light-mode .card { background: #ffffff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-    
-    .upload-btn { display: inline-block; background: #0284c7; color: #fff; padding: 14px 24px; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; width: 100%; transition: 0.2s; }
+    /* الشريط العلوي الاحترافي */
+    .app-bar { background: var(--card-bg); padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
+    .brand { display: flex; flex-direction: column; }
+    .app-title { font-size: 1.15rem; font-weight: 800; color: var(--accent); display: flex; align-items: center; gap: 6px; }
+    .security-badge { font-size: 0.68rem; color: var(--success); font-weight: 700; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+    .settings-btn { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 9px 14px; border-radius: 12px; font-size: 0.9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+
+    .container { padding: 16px; max-width: 500px; margin: 0 auto; }
+    .card { background: var(--card-bg); padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); border: 1px solid var(--border); }
+
+    /* زر الرفع */
+    .upload-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff; padding: 18px; border-radius: 16px; font-size: 1.05rem; font-weight: 800; cursor: pointer; width: 100%; box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35); transition: 0.2s; }
     .upload-btn:active { transform: scale(0.98); }
+    .upload-sub { font-size: 0.75rem; font-weight: 400; opacity: 0.9; }
     input[type="file"] { display: none; }
-    canvas { max-width: 100%; border-radius: 12px; margin-top: 15px; display: none; border: 2px solid #334155; }
-    .filters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 15px; display: none; }
-    .filter-btn { background: #334155; color: #fff; border: none; padding: 10px 6px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; }
-    .filter-btn.active { background: #38bdf8; color: #0f172a; font-weight: bold; }
-    .download-btn { background: #16a34a; color: #fff; border: none; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 100%; margin-top: 15px; cursor: pointer; display: none; }
 
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 200; justify-content: center; align-items: center; padding: 20px; }
-    .modal-content { background: #1e293b; color: #fff; padding: 20px; border-radius: 16px; width: 100%; max-width: 400px; text-align: center; }
-    .modal-btn { width: 100%; padding: 12px; margin-top: 10px; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; background: #334155; color: #fff; }
-    .close-btn { background: #ef4444; }
-    #savedImagePreview { max-width: 100%; max-height: 60vh; border-radius: 10px; margin: 10px 0; border: 2px solid #38bdf8; }
+    /* منطقة الصورة */
+    .canvas-wrapper { position: relative; margin-top: 16px; display: none; text-align: center; background: #000; border-radius: 14px; padding: 4px; border: 1px solid var(--border); }
+    canvas { max-width: 100%; max-height: 52vh; border-radius: 10px; display: block; margin: 0 auto; }
+
+    /* شريط الأدوات السريعة */
+    .quick-tools { display: none; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
+    .tool-btn { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 9px 2px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+    .tool-btn.active-tool { border-color: var(--accent); color: var(--accent); }
+
+    /* أداة إضافة نص */
+    .text-tool-box { display: none; background: var(--bg-color); padding: 12px; border-radius: 12px; margin-top: 12px; border: 1px solid var(--border); }
+    .text-input-row { display: flex; gap: 8px; }
+    .text-input-row input[type="text"] { flex: 1; background: var(--card-bg); color: var(--text-color); border: 1px solid var(--border); padding: 9px 12px; border-radius: 10px; font-size: 0.85rem; outline: none; }
+    .text-input-row input[type="color"] { width: 42px; height: 38px; border: none; border-radius: 8px; background: none; cursor: pointer; }
+
+    /* الفلاتر */
+    .section-label { font-size: 0.82rem; font-weight: 700; color: var(--sub-text); margin: 16px 0 8px; display: none; text-align: right; }
+    .filters { display: none; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    .filter-btn { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 10px 4px; border-radius: 10px; font-size: 0.76rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .filter-btn.active { background: var(--accent); color: #090d16; border-color: var(--accent); font-weight: 800; }
+
+    /* أشرطة الضبط اليدوي */
+    .sliders-box { display: none; background: var(--bg-color); padding: 12px 14px; border-radius: 14px; margin-top: 10px; border: 1px solid var(--border); }
+    .slider-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 0.8rem; font-weight: 600; }
+    .slider-row:last-child { margin-bottom: 0; }
+    .slider-row input[type="range"] { width: 65%; accent-color: var(--accent); }
+
+    /* زر الحفظ */
+    .download-btn { background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; padding: 15px; border-radius: 14px; font-size: 1rem; font-weight: 800; width: 100%; margin-top: 16px; cursor: pointer; display: none; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); }
+
+    /* تذييل الحقوق */
+    .footer-note { text-align: center; font-size: 0.72rem; color: var(--sub-text); margin-top: 18px; }
+
+    /* شاشة الإعدادات الكاملة */
+    .settings-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 300; overflow-y: auto; }
+    .settings-header { background: var(--card-bg); padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+    .back-btn { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 8px 14px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+    .settings-list { padding: 16px; max-width: 500px; margin: 0 auto; }
+    .setting-group { background: var(--card-bg); border-radius: 16px; margin-bottom: 16px; overflow: hidden; border: 1px solid var(--border); }
+    .group-title { padding: 10px 16px; font-size: 0.78rem; font-weight: 800; color: var(--accent); background: var(--accent-glow); }
+    .setting-item { padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); cursor: pointer; }
+    .setting-item:last-child { border-bottom: none; }
+    .item-info { display: flex; flex-direction: column; max-width: 72%; }
+    .item-title { font-size: 0.92rem; font-weight: 700; }
+    .item-desc { font-size: 0.75rem; color: var(--sub-text); margin-top: 3px; line-height: 1.4; }
+    select.setting-select { background: var(--btn-bg); color: var(--text-color); border: 1px solid var(--border); padding: 7px 10px; border-radius: 8px; font-weight: 700; font-size: 0.82rem; }
+
+    /* النوافذ المنبثقة */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 400; justify-content: center; align-items: center; padding: 18px; }
+    .modal-content { background: var(--card-bg); color: var(--text-color); padding: 22px; border-radius: 20px; width: 100%; max-width: 420px; text-align: center; border: 1px solid var(--border); max-height: 88vh; overflow-y: auto; }
+    .modal-btn { width: 100%; padding: 13px; margin-top: 12px; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 800; cursor: pointer; background: #ef4444; color: #fff; }
+    #savedImagePreview { max-width: 100%; max-height: 52vh; border-radius: 12px; margin: 12px 0; border: 2px solid var(--accent); }
+    .policy-text { text-align: right; font-size: 0.82rem; color: var(--sub-text); line-height: 1.6; background: var(--bg-color); padding: 14px; border-radius: 12px; border: 1px solid var(--border); }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
+  <!-- الشريط العلوي -->
   <div class="app-bar">
-    <span class="app-title">✨ The Leader</span>
-    <button class="settings-btn" onclick="openModal('settingsModal')">⚙️ الضبط</button>
+    <div class="brand">
+      <span class="app-title">✨ The Leader AI</span>
+      <span class="security-badge">🔒 محمي ومُؤمّن • GLOBAL AI BUSINESS</span>
+    </div>
+    <button class="settings-btn" onclick="openSettings()">⚙️ الضبط</button>
   </div>
 
+  <!-- الشاشة الرئيسية -->
   <div class="container">
     <div class="card">
       <label class="upload-btn">
-        📁 اختر صورة من المعرض
+        <span>📁 اختر صورة للبدء</span>
+        <span class="upload-sub">معالجة فورية وآمنة 100% داخل جهازك</span>
         <input type="file" id="imageInput" accept="image/*">
       </label>
-      <canvas id="canvas"></canvas>
-      <div class="filters" id="filtersBox">
-        <button class="filter-btn active" onclick="applyFilter('none', this)">أصلي</button>
-        <button class="filter-btn" onclick="applyFilter('contrast(120%) saturate(130%) brightness(105%)', this)">ألوان زاهية</button>
-        <button class="filter-btn" onclick="applyFilter('contrast(135%) brightness(95%) sepia(20%)', this)">سينمائي</button>
-        <button class="filter-btn" onclick="applyFilter('grayscale(100%) contrast(120%)', this)">أبيض وأسود</button>
-        <button class="filter-btn" onclick="applyFilter('sepia(45%) brightness(108%)', this)">دافئ كلاسيك</button>
-        <button class="filter-btn" onclick="applyFilter('brightness(115%) contrast(108%) saturate(110%)', this)">تفتيح وصفاء</button>
+
+      <div class="canvas-wrapper" id="canvasWrapper">
+        <canvas id="canvas"></canvas>
       </div>
-      <button class="download-btn" id="downloadBtn" onclick="downloadImage()">⬇️ حفظ الصورة بالفلتر</button>
-    </div>
-  </div>
 
-  <div class="modal" id="settingsModal">
-    <div class="modal-content">
-      <h3>⚙️ إعدادات التطبيق</h3>
-      <button class="modal-btn" onclick="toggleTheme()">🌓 تغيير المظهر (ليلي / نهاري)</button>
-      <button class="modal-btn" onclick="location.reload()">🔄 إعادة تشغيل / تحديث التطبيق</button>
-      <button class="modal-btn" onclick="alert('تطبيق GLOBAL AI BUSINESS - إصدار 1.0')">ℹ️ حول التطبيق</button>
-      <button class="modal-btn close-btn" onclick="closeModal('settingsModal')">إغلاق</button>
-    </div>
-  </div>
+      <!-- أدوات التحكم السريعة -->
+      <div class="quick-tools" id="quickTools">
+        <button class="tool-btn" onclick="rotateImage()">🔄 تدوير</button>
+        <button class="tool-btn" id="vignetteBtn" onclick="toggleVignette()">🖼️ إطار</button>
+        <button class="tool-btn" id="textToggleBtn" onclick="toggleTextBox()">✍️ نص</button>
+        <button class="tool-btn" onmousedown="showOriginal(true)" onmouseup="showOriginal(false)" ontouchstart="showOriginal(true)" ontouchend="showOriginal(false)">👁️ الأصل</button>
+      </div>
 
-  <div class="modal" id="saveModal">
-    <div class="modal-content">
-      <h3 style="color:#38bdf8; margin-top:0;">✅ الصورة جاهزة!</h3>
-      <p style="font-size:0.9rem; color:#cbd5e1;">اضغط مطولاً بصباعك على الصورة بالأسفل واختر <b>"تنزيل الصورة"</b> لحفظها في الاستوديو:</p>
-      <img id="savedImagePreview" src="" alt="الصورة المعدلة">
-      <button class="modal-btn close-btn" onclick="closeModal('saveModal')">تم / إغلاق</button>
-    </div>
-  </div>
+      <!-- أداة إضافة نص على الصورة -->
+      <div class="text-tool-box" id="textToolBox">
+        <div class="text-input-row">
+          <input type="text" id="customTextInput" placeholder="اكتب اسمك أو نصاً على الصورة..." oninput="renderCanvas()">
+          <input type="color" id="customTextColor" value="#ffffff" onchange="renderCanvas()">
+        </div>
+      </div>
 
-  <script>
-    const imageInput = document.getElementById('imageInput');
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    const filtersBox = document.getElementById('filtersBox');
-    const downloadBtn = document.getElementById('downloadBtn');
-    let img = new Image();
-
-    imageInput.addEventListener('change', function(e) {
-      const file = e.target.files.item(0);
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        img.onload = function() {
-          canvas.width = img.width;
-          canvas.height = img.height;
-          ctx.filter = 'none';
-          ctx.drawImage(img, 0, 0);
-          canvas.style.display = 'block';
-          filtersBox.style.display = 'grid';
-          downloadBtn.style.display = 'block';
-        };
-        img.src = event.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
-
-    function applyFilter(filterValue, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.filter = filterValue;
-      ctx.drawImage(img, 0, 0);
-    }
-
-    function downloadImage() {
-      const dataUrl = canvas.toDataURL('image/png');
-      document.getElementById('savedImagePreview').src = dataUrl;
-      openModal('saveModal');
-    }
-
-    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-    function toggleTheme() { document.body.classList.toggle('light-mode'); closeModal('settingsModal'); }
-  </script>
-</body>
-</html>
+      <!-- الفلاتر -->
